@@ -4,11 +4,21 @@
   <meta charset="UTF-8">
   <title>春秋航空 - 用户中心</title>
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: "Microsoft YaHei", sans-serif;
       background: #f0f2f5;
+      animation: fadeSlideIn 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .header {
@@ -32,6 +42,40 @@
       border-radius: 6px;
     }
 
+    .logout-btn {
+      background-color: #ff6600;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    .logout-btn:hover {
+      background-color: #e65c00;
+    }
+
+    .top-banner {
+      position: fixed;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0078d7;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: slideDown 1s forwards;
+      z-index: 999;
+    }
+
+    @keyframes slideDown {
+      from { top: -60px; opacity: 0; }
+      to { top: 20px; opacity: 1; }
+    }
+
     .container {
       display: flex;
       padding: 30px;
@@ -44,6 +88,12 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       padding: 20px;
       flex: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .panel:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .panel h2 {
@@ -63,21 +113,37 @@
       text-align: center;
     }
 
-    .logout-btn {
-      background-color: #ff6600;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
+    .chart img {
+      animation: radarSpin 4s linear infinite;
     }
 
-    .logout-btn:hover {
-      background-color: #e65c00;
+    @keyframes radarSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .welcome {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #0078d7;
+      animation: typing 2s steps(12) forwards, blink 0.7s step-end infinite;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
   </style>
 </head>
 <body>
+  <div class="top-banner">欢迎进入飞行控制中心</div>
+
   <div class="header">
     <h1>春秋航空用户中心</h1>
     <div>
@@ -89,7 +155,7 @@
   <div class="container">
     <!-- 左侧统计 -->
     <div class="panel">
-      <h2>飞行统计</h2>
+      <h2 class="welcome">欢迎回来，CQH6580</h2>
       <div class="stats">
         <p>用户名：CQH6580</p>
         <p>用户 ID：6580</p>
