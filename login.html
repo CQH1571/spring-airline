@@ -97,6 +97,12 @@
     .login-box .link:hover {
       text-decoration: underline;
     }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -104,13 +110,43 @@
     <a href="index.html" class="close-btn">&times;</a>
     <div class="login-box">
       <h2>用户登录</h2>
-      <form>
-        <input type="text" placeholder="用户名" required>
-        <input type="password" placeholder="密码" required>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="用户名" required>
+        <input type="password" id="password" placeholder="密码" required>
         <button type="submit">登录</button>
       </form>
+      <div class="message" id="message"></div>
       <a href="register.html" class="link">还没有账号？立即注册</a>
     </div>
   </div>
+
+  <script>
+    // 定义一个测试用户
+    const testUser = {
+      username: "1",
+      password: "1"
+    };
+
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // 阻止表单提交刷新页面
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === testUser.username && password === testUser.password) {
+        message.style.color = "green";
+        message.textContent = "登录成功！正在跳转...";
+        // 跳转到 dashboard 页面
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1000);
+      } else {
+        message.style.color = "red";
+        message.textContent = "用户名或密码错误，请重试。";
+      }
+    });
+  </script>
 </body>
 </html>
