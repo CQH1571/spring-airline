@@ -19,6 +19,25 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 28px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background: rgba(0,0,0,0.4);
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(0,0,0,0.7);
     }
 
     .register-box {
@@ -34,14 +53,8 @@
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .register-box h2 {
@@ -88,6 +101,7 @@
 </head>
 <body>
   <div class="overlay">
+    <a href="index.html" class="close-btn">&times;</a>
     <div class="register-box">
       <h2>用户注册</h2>
       <form>
