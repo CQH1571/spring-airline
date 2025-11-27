@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>春秋航空 - 首页</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+
+    .hero {
+      background: url("hero-bg.jpg") no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-login {
+      background-color: #0078d7;
+      color: white;
+    }
+
+    .btn-register {
+      background-color: #ff6600;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>欢迎来到春秋航空</h1>
+    <button class="btn btn-login">登录</button>
+    <button class="btn btn-register">注册</button>
+  </div>
+</body>
+</html>
