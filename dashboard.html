@@ -7,32 +7,22 @@
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: "Microsoft YaHei", sans-serif;
-      background: url("image/hero-bg.jpg") no-repeat center center;
-      background-size: cover;
+      background: #f0f2f5;
     }
 
-    .overlay {
-      background: rgba(0,0,0,0.6);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* 顶部导航栏 */
-    .navbar {
+    .header {
+      background-color: #0078d7;
+      color: white;
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(0,0,0,0.7);
-      padding: 10px 20px;
-      color: white;
     }
 
-    .navbar h1 {
-      font-size: 20px;
+    .header h1 {
       margin: 0;
+      font-size: 20px;
     }
 
     .utc-time {
@@ -42,102 +32,93 @@
       border-radius: 6px;
     }
 
+    .container {
+      display: flex;
+      padding: 30px;
+      gap: 30px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      flex: 1;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .stats p, .info p {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    .chart {
+      margin-top: 20px;
+      text-align: center;
+    }
+
     .logout-btn {
-      margin-left: 20px;
-      font-size: 16px;
+      background-color: #ff6600;
       color: white;
-      text-decoration: none;
-      background: #ff6600;
       padding: 6px 12px;
       border-radius: 6px;
-      transition: background 0.3s ease;
+      text-decoration: none;
+      font-size: 14px;
     }
 
     .logout-btn:hover {
-      background: #e65c00;
-    }
-
-    /* 主体布局 */
-    .main {
-      flex: 1;
-      display: flex;
-    }
-
-    .sidebar {
-      width: 200px;
-      background: rgba(255,255,255,0.9);
-      padding: 20px;
-    }
-
-    .sidebar a {
-      display: block;
-      margin: 10px 0;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    .sidebar a:hover {
-      color: #0078d7;
-    }
-
-    .content {
-      flex: 1;
-      background: rgba(255,255,255,0.85);
-      padding: 30px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    .card h2 {
-      margin-top: 0;
+      background-color: #e65c00;
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <!-- 顶部导航栏 -->
-    <div class="navbar">
-      <h1>春秋航空用户中心</h1>
-      <div>
-        <span class="utc-time" id="utc-time">UTC 时间加载中...</span>
-        <a href="index.html" class="logout-btn">退出</a>
+  <div class="header">
+    <h1>春秋航空用户中心</h1>
+    <div>
+      <span class="utc-time" id="utc-time">UTC 时间加载中...</span>
+      <a href="index.html" class="logout-btn">退出</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- 左侧统计 -->
+    <div class="panel">
+      <h2>飞行统计</h2>
+      <div class="stats">
+        <p>用户名：CQH6580</p>
+        <p>用户 ID：6580</p>
+        <p>等级：Captain</p>
+        <p>总飞行时间：26小时49分</p>
+        <p>最近飞行时间：4小时9分</p>
+        <p>航班数：2</p>
+        <p>总里程：8,339 km</p>
+        <p>乘客数：115</p>
+        <p>货物量：140 kg</p>
+        <p>总收入：$628.76</p>
+      </div>
+      <div class="chart">
+        <img src="image/piechart.png" alt="机型使用比例图" width="200">
+        <p>Airbus：77.52% | Boeing：34.38%</p>
       </div>
     </div>
 
-    <!-- 主体部分 -->
-    <div class="main">
-      <!-- 左侧导航栏 -->
-      <div class="sidebar">
-        <a href="#">首页</a>
-        <a href="#">航班查询</a>
-        <a href="#">我的订单</a>
-        <a href="#">个人信息</a>
-        <a href="#">设置</a>
-      </div>
-
-      <!-- 内容区 -->
-      <div class="content">
-        <div class="card">
-          <h2>欢迎回来，用户！</h2>
-          <p>这是您的个人控制面板，您可以在这里查看航班信息、订单和个人资料。</p>
-        </div>
-
-        <div class="card">
-          <h2>航班信息</h2>
-          <p>这里可以展示航班动态、预订信息等。</p>
-        </div>
-
-        <div class="card">
-          <h2>个人资料</h2>
-          <p>这里可以展示用户的基本信息，例如姓名、邮箱等。</p>
-        </div>
+    <!-- 右侧用户信息 -->
+    <div class="panel">
+      <h2>用户资料</h2>
+      <div class="info">
+        <p>用户名：CQH6580</p>
+        <p>用户 ID：6580</p>
+        <p>等级：Captain</p>
+        <p>总飞行时间：26小时49分</p>
+        <p>微信：362621467</p>
+        <p>QQ：362621467</p>
+        <p>邮箱：xuanli@outlook.com</p>
       </div>
     </div>
   </div>
