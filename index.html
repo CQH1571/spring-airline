@@ -21,6 +21,7 @@
       align-items: center;
       color: white;
       text-align: center;
+      position: relative;
     }
 
     .hero h1 {
@@ -55,13 +56,36 @@
       transform: scale(1.05);
       opacity: 0.9;
     }
+
+    /* UTC 时间显示 */
+    .utc-time {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 16px;
+      color: #fff;
+      background: rgba(0,0,0,0.4);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
   <div class="hero">
+    <div class="utc-time" id="utc-time">UTC 时间加载中...</div>
     <h1>欢迎来到春秋航空</h1>
     <a href="login.html" class="btn btn-login">登录</a>
-    <a href="https://cqh1571.github.io/VATSIM-/join.html" class="btn btn-register">注册</a>
+    <a href="register.html" class="btn btn-register">注册</a>
   </div>
+
+  <script>
+    function updateUTC() {
+      const now = new Date();
+      const utcString = now.toUTCString();
+      document.getElementById("utc-time").textContent = utcString;
+    }
+    updateUTC();
+    setInterval(updateUTC, 1000);
+  </script>
 </body>
 </html>
