@@ -78,6 +78,7 @@
 
     .container {
       display: flex;
+      flex-wrap: wrap;
       padding: 30px;
       gap: 30px;
     }
@@ -87,7 +88,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       padding: 20px;
-      flex: 1;
+      flex: 1 1 45%;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -103,7 +104,7 @@
       padding-bottom: 10px;
     }
 
-    .stats p, .info p {
+    .stats p {
       margin: 8px 0;
       font-size: 15px;
     }
@@ -139,6 +140,11 @@
     @keyframes blink {
       50% { border-color: transparent; }
     }
+
+    canvas {
+      display: block;
+      margin: 20px auto;
+    }
   </style>
 </head>
 <body>
@@ -153,11 +159,11 @@
   </div>
 
   <div class="container">
-    <!-- 左侧统计 -->
+    <!-- 欢迎 + 统计 -->
     <div class="panel">
-      <h2 class="welcome">欢迎回来，用户名</h2>
+      <h2 class="welcome">欢迎回来，<span id="username">1</span></h2>
       <div class="stats">
-        <p>用户名：用户名</p>
+        <p>用户名：<span id="username2">1</span></p>
         <p>用户编号：0001</p>
         <p>等级：sup</p>
         <p>航班数：0</p>
@@ -172,21 +178,27 @@
       </div>
     </div>
 
-    <!-- 右侧用户信息 -->
+    <!-- 最近活动 -->
     <div class="panel">
-      <h2>用户资料</h2>
-      <div class="info">
-        <p>用户名：用户名</p>
-        <p>用户编号：0001</p>
-        <p>等级：sup</p>
-        <p>微信：362621467</p>
-        <p>QQ：362621467</p>
-        <p>邮箱：xuanli@outlook.com</p>
-      </div>
+      <h2>最近活动</h2>
+      <p>暂无活动记录。后续将展示最近执飞航班、调度变更、系统通知等。</p>
+    </div>
+
+    <!-- 仪表盘模块 -->
+    <div class="panel">
+      <h2>航班数量对比仪表盘</h2>
+      <canvas id="gaugeCanvas" width="300" height="150"></canvas>
+      <p style="text-align:center;">蓝色：用户航班数 | 绿色：全体平均</p>
     </div>
   </div>
 
   <script>
+    // 动态用户名（后续可替换为后端数据）
+    const username = "1";
+    document.getElementById("username").textContent = username;
+    document.getElementById("username2").textContent = username;
+
+    // UTC 时间更新
     function updateUTC() {
       const now = new Date();
       const utcString = now.toUTCString();
@@ -194,6 +206,45 @@
     }
     updateUTC();
     setInterval(updateUTC, 1000);
+
+    // 仪表盘绘制（模拟航班数量对比）
+    const canvas = document.getElementById("gaugeCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function drawGauge(userFlights, avgFlights) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 背景弧
+      ctx.beginPath();
+      ctx.arc(150, 150, 100, Math.PI, 0);
+      ctx.strokeStyle = "#ccc";
+      ctx.lineWidth = 10;
+      ctx.stroke();
+
+      // 用户指针（蓝色）
+      const userAngle = Math.PI + (userFlights / 100) * Math.PI;
+      ctx.beginPath();
+      ctx.moveTo(150, 150);
+      ctx.lineTo(150 + 90 * Math.cos(userAngle), 150 + 90 * Math.sin(userAngle));
+      ctx.strokeStyle = "#0078d7";
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      // 平均指针（绿色）
+      const avgAngle = Math.PI + (avgFlights / 100) * Math.PI;
+      ctx.beginPath();
+      ctx.moveTo(150, 150);
+      ctx.lineTo(150 + 90 * Math.cos(avgAngle), 150 + 90 * Math.sin(avgAngle));
+      ctx.strokeStyle = "#28a745";
+      ctx.lineWidth = 4;
+      ctx.stroke();
+    }
+
+    // 初始值（后续接后端）
+    let userFlights = 0;
+    let avgFlights = 0;
+
+    drawGauge(userFlights, avgFlights);
   </script>
 </body>
 </html>
