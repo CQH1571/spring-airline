@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>春秋航空 - 用户中心</title>
+  <style>
+    body { font-family:"Microsoft YaHei",sans-serif; background:#f0f2f5; margin:0; padding:20px; }
+    .panel { background:white; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); max-width:600px; margin:auto; }
+    h1 { color:#0078d7; }
+    .logout { display:inline-block; margin-top:20px; padding:8px 16px; background:#ff6600; color:white; border-radius:6px; text-decoration:none; }
+    .logout:hover { background:#e65c00; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>用户中心</h1>
+    <p id="welcome"></p>
+    <p>这里将展示您的航班数据、里程、乘客数等信息。</p>
+    <a href="login.html" class="logout" onclick="localStorage.clear()">退出登录</a>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      alert("请先登录！");
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("welcome").textContent = `欢迎回来，${user.username} (${user.email})`;
+    }
+  </script>
+</body>
+</html>
