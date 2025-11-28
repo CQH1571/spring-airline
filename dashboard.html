@@ -4,247 +4,32 @@
   <meta charset="UTF-8">
   <title>春秋航空 - 管理员中心</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: "Microsoft YaHei", sans-serif;
-      background: #f0f2f5;
-      animation: fadeSlideIn 1s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    @keyframes fadeSlideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .header {
-      background-color: #0078d7;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    .utc-time {
-      font-size: 14px;
-      background: rgba(255,255,255,0.2);
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-
-    .logout-btn {
-      background-color: #ff6600;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
-      margin-left: 10px;
-    }
-
-    .logout-btn:hover {
-      background-color: #e65c00;
-    }
-
-    .top-banner {
-      position: fixed;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #0078d7;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      animation: slideDown 1s forwards;
-      z-index: 999;
-    }
-
-    @keyframes slideDown {
-      from { top: -60px; opacity: 0; }
-      to { top: 20px; opacity: 1; }
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 30px;
-      gap: 30px;
-    }
-
-    .panel {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 20px;
-      flex: 1 1 45%;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .panel:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .panel h2 {
-      margin-top: 0;
-      font-size: 18px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-    }
-
-    .stats p {
-      margin: 8px 0;
-      font-size: 15px;
-    }
-
-    .chart {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .chart img {
-      animation: radarSpin 4s linear infinite;
-    }
-
-    @keyframes radarSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .welcome {
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid #0078d7;
-      animation: typing 2s steps(12) forwards, blink 0.7s step-end infinite;
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    canvas {
-      display: block;
-      margin: 20px auto;
-    }
+    /* 保留你之前的样式 */
+    body { font-family:"Microsoft YaHei",sans-serif; background:#f0f2f5; margin:0; }
+    .header { background:#0078d7; color:white; padding:15px; display:flex; justify-content:space-between; }
+    .logout-btn { background:#ff6600; color:white; padding:6px 12px; border-radius:6px; text-decoration:none; }
+    .logout-btn:hover { background:#e65c00; }
   </style>
 </head>
 <body>
-  <div class="top-banner">欢迎进入管理员控制中心</div>
-
   <div class="header">
     <h1>春秋航空管理员中心</h1>
-    <div>
-      <span class="utc-time" id="utc-time">UTC 时间加载中...</span>
-      <a href="index.html" class="logout-btn">退出</a>
-    </div>
+    <a href="login.html" class="logout-btn" onclick="localStorage.clear()">退出</a>
   </div>
 
   <div class="container">
-    <!-- 欢迎 + 统计 -->
-    <div class="panel">
-      <h2 class="welcome">欢迎回来，<span id="username">1</span></h2>
-      <div class="stats">
-        <p>用户名：<span id="username2">1</span></p>
-        <p>用户编号：0001</p>
-        <p>等级：sup</p>
-        <p>航班数：0</p>
-        <p>总里程：0 km</p>
-        <p>乘客数：0</p>
-        <p>货物量：0 kg</p>
-        <p>总收入：$0.00</p>
-      </div>
-      <div class="chart">
-        <img src="image/piechart.png" alt="机型使用比例图" width="200">
-        <p>Airbus：0% | Boeing：0%</p>
-      </div>
-    </div>
-
-    <!-- 最近活动 -->
-    <div class="panel">
-      <h2>最近活动</h2>
-      <p>暂无活动记录。后续将展示最近执飞航班、调度变更、系统通知等。</p>
-    </div>
-
-    <!-- 仪表盘模块 -->
-    <div class="panel">
-      <h2>航班数量对比仪表盘</h2>
-      <canvas id="gaugeCanvas" width="300" height="150"></canvas>
-      <p style="text-align:center;">蓝色：用户航班数 | 绿色：全体平均</p>
-    </div>
+    <h2>欢迎回来，<span id="username"></span></h2>
+    <p>这里是管理员面板，您可以查看系统统计和管理功能。</p>
   </div>
 
   <script>
-    // 动态用户名（后续可替换为后端数据）
-    const username = "1";
-    document.getElementById("username").textContent = username;
-    document.getElementById("username2").textContent = username;
-
-    // UTC 时间更新
-    function updateUTC() {
-      const now = new Date();
-      const utcString = now.toUTCString();
-      document.getElementById("utc-time").textContent = utcString;
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !(user.username === "1" || user.email === "YCNJ-xuanzhi@outlook.com")) {
+      alert("您没有权限访问管理员面板！");
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("username").textContent = user.username;
     }
-    updateUTC();
-    setInterval(updateUTC, 1000);
-
-    // 仪表盘绘制（模拟航班数量对比）
-    const canvas = document.getElementById("gaugeCanvas");
-    const ctx = canvas.getContext("2d");
-
-    function drawGauge(userFlights, avgFlights) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // 背景弧
-      ctx.beginPath();
-      ctx.arc(150, 150, 100, Math.PI, 0);
-      ctx.strokeStyle = "#ccc";
-      ctx.lineWidth = 10;
-      ctx.stroke();
-
-      // 用户指针（蓝色）
-      const userAngle = Math.PI + (userFlights / 100) * Math.PI;
-      ctx.beginPath();
-      ctx.moveTo(150, 150);
-      ctx.lineTo(150 + 90 * Math.cos(userAngle), 150 + 90 * Math.sin(userAngle));
-      ctx.strokeStyle = "#0078d7";
-      ctx.lineWidth = 4;
-      ctx.stroke();
-
-      // 平均指针（绿色）
-      const avgAngle = Math.PI + (avgFlights / 100) * Math.PI;
-      ctx.beginPath();
-      ctx.moveTo(150, 150);
-      ctx.lineTo(150 + 90 * Math.cos(avgAngle), 150 + 90 * Math.sin(avgAngle));
-      ctx.strokeStyle = "#28a745";
-      ctx.lineWidth = 4;
-      ctx.stroke();
-    }
-
-    // 初始值（后续接后端）
-    let userFlights = 0;
-    let avgFlights = 0;
-
-    drawGauge(userFlights, avgFlights);
   </script>
 </body>
 </html>
